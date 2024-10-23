@@ -1,0 +1,28 @@
+<div *ngIf="marketRates.length === 0; else table">
+    No hay cotizaciones para mostrar.
+</div>
+
+<ng-template #table>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>moneda</th>
+                <th>casa</th>
+                <th>nombre</th>
+                <th>compra</th>
+                <th>venta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let marketRate of marketRates; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ marketRate.moneda }}</td>
+                <td>{{ marketRate.casa }}</td>
+                <td>{{ marketRate.nombre }}</td>
+                <td>{{ marketRate.compra }}</td>
+                <td>{{ marketRate.venta }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
