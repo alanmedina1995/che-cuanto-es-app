@@ -1,9 +1,9 @@
-<div *ngIf="marketRates.length === 0; else table">
+<div *ngIf="marketRates.length === 0; else table" class="alert alert-warning text-center">
     No hay cotizaciones para mostrar.
 </div>
 
 <ng-template #table>
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>#</th>
@@ -20,8 +20,8 @@
                 <td>{{ marketRate.moneda }}</td>
                 <td>{{ marketRate.casa }}</td>
                 <td>{{ marketRate.nombre }}</td>
-                <td>{{ marketRate.compra }}</td>
-                <td>{{ marketRate.venta }}</td>
+                <td>{{ marketRate.compra | currency }}</td>
+                <td>{{ marketRate.venta | currency }}</td>
             </tr>
         </tbody>
     </table>

@@ -13,11 +13,17 @@ export class MarketRatesService {
   constructor(private http: HttpClient) { }
 
   getMarketRatesValues(): Observable<MarketRate[]>{
-    console.log("Entre a pedir la cotizaciones");
     const url = `${this.apiUrl}/v1/cotizaciones`;
 
-    return this.http.get<any>(url)
-    .pipe(catchError(() => of([])))
+    return this.http.get<MarketRate[]>(url)
+    .pipe(catchError(() => of([])));
+  }
+
+  getDolarValues(): Observable<MarketRate[]>{
+    const url = `${this.apiUrl}/v1/dolares`;
+
+    return this.http.get<MarketRate[]>(url)
+    .pipe(catchError(() => of([])));
   }
 
 

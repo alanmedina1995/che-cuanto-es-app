@@ -4,13 +4,15 @@ import { MarketRatesPageComponent } from './pages/market-rates-page/market-rates
 import { MarketRatesTableComponent } from './components/market-rates-table/market-rates-table.component';
 import { MarketRatesRoutingModule } from './market-rates-routing.modules';
 import { SharedModule } from '../shared/shared.module';
+import { DolarsComponent } from './pages/dolars/dolars-page/dolars-page.component';
 
 
 
 @NgModule({
   declarations: [
     MarketRatesPageComponent,
-    MarketRatesTableComponent
+    MarketRatesTableComponent,
+    DolarsComponent
   ],
   imports: [
     CommonModule,

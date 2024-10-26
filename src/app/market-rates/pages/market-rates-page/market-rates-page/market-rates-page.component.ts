@@ -12,12 +12,22 @@ export class MarketRatesPageComponent {
 
   constructor(private marketRatesService: MarketRatesService) {
     this.getMarketRatesValues();
+    this.getDolarValues();
   }
 
   getMarketRatesValues(): void {
-    console.log("Entre a pedir la cotizaciones page componet");
     this.marketRatesService.getMarketRatesValues()
     .subscribe(marketRates => this.marketRates = marketRates);
+  }
+
+  getDolarValues(): void {
+    this.marketRatesService.getDolarValues()
+    .subscribe(dolarValues => {
+      this.marketRates = [
+        ...this.marketRates, 
+        ...dolarValues.filter(dolarValue => dolarValue.nombre !== 'Oficial')
+      ];
+    });
   }
 
 }
