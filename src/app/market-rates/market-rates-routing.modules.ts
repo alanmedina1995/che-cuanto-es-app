@@ -4,9 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { DolarsComponent } from './pages/dolars/dolars-page/dolars-page.component';
 
 const routes: Routes = [
-    { path: 'market-rates', component: MarketRatesPageComponent },
-    { path: 'dolar-market-rates', component: DolarsComponent},
-    { path: '**', redirectTo: 'market-rates' }
+    {
+        path: '',
+        children: [
+            { path: 'cotizaciones', component: MarketRatesPageComponent },
+            { path: 'precio-del-dolar', component: DolarsComponent },
+            { path: '**', redirectTo: 'cotizaciones' },
+        ]
+    }
 ];
 
 @NgModule({

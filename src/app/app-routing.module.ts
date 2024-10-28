@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./market-rates/market-rates.module').then(m => m.MarketRatesModule)
   },
   {
+    path:'site-policy',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
