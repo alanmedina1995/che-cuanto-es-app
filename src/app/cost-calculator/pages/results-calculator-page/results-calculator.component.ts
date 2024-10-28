@@ -17,15 +17,15 @@ export class ResultsCalculatorComponent {
   constructor(
     private costCalculatorService: CostCalculatorServiceService
   ){
-    this.getResultValues();
-  }
-
-  ngOnInit(): void{
     
   }
 
+  ngOnInit(): void{
+    this.getResultValues();
+  }
+
   getResultValues():void{
-    this.inflationValue = this.costCalculatorService.inflationValue;
+    this.inflationValue = this.costCalculatorService.inflationValue * 100;
     this.totalAdjustedInstallments = this.costCalculatorService.totalAdjustedInstallments;
     this.cashPrice = this.costCalculatorService.cashPrice;
     this.financedPrice = this.costCalculatorService.financedPrice;

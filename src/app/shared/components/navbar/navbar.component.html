@@ -1,5 +1,17 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-md">
-      <a class="navbar-brand" href="#">¿Che cuanto es?</a>
+      <a class="navbar-brand" (click)="navigateToHome()">¿Che cuanto es?</a>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" (click)="navigateToCostCalculator()">Calcuflación</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cotizaciones</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="navigateToMarketRates()">Oficiales</a></li>
+            <li><a class="dropdown-item" (click)="navigateToDolarArgy()">Dolar en Argy</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
-  </nav>
+</nav>

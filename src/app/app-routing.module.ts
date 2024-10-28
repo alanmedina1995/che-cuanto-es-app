@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'market-rates',
     loadChildren: () => import('./market-rates/market-rates.module').then(m => m.MarketRatesModule)
   },
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: 'market-rates'
   }
 ];
 

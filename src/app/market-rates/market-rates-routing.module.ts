@@ -7,9 +7,9 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            { path: 'cotizaciones', component: MarketRatesPageComponent },
-            { path: 'precio-del-dolar', component: DolarsComponent },
-            { path: '**', redirectTo: 'cotizaciones' },
+            { path: 'oficiales', component: MarketRatesPageComponent },
+            { path: 'dolar-argy', component: DolarsComponent },
+            { path: '**', redirectTo: 'oficiales' },
         ]
     }
 ];

@@ -111,7 +111,7 @@ export class CostCalculatorPageComponent {
       this.installmentValue,
       this.adjustedInstallments);
     
-    this.router.navigate(['calculator/resultados']);
+    this.router.navigate(['./calculator/resultados']);
   }
 
 }
