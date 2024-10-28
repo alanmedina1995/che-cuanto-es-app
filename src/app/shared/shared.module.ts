@@ -4,20 +4,23 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './components/footer/footer.component';
 import { PoliticyPageComponent } from './pages/politicy-page/politicy-page.component';
 import { TermPageComponent } from './pages/term-page/term-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     FooterComponent,
     PoliticyPageComponent,
-    TermPageComponent
+    TermPageComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
     RouterModule
   ],
   exports: [
-    FooterComponent
+    FooterComponent,
+    NavbarComponent
   ]
 })
 export class SharedModule { }
