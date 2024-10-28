@@ -2,11 +2,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CostCalculatorServiceService } from '../../services/cost-calculator-service.service';
 import { InflationValue } from './../../interfaces/inflation-value';
 import { Component } from '@angular/core';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-cost-calculator-page',
-  templateUrl: './cost-calculator-page.component.html',
-  styleUrl: './cost-calculator-page.component.css'
+  templateUrl: './cost-calculator-page.component.html'
 })
 export class CostCalculatorPageComponent {
 
@@ -24,19 +24,20 @@ export class CostCalculatorPageComponent {
     installments: new FormControl('', [Validators.required, Validators.min(0)])
   })
 
-  public inflationValue: number = 0;
-  public totalAdjustedInstallments: number = 0;
-  public cashPrice: number = 0;
-  public financedPrice: number = 0;
-  public installments: number = 0;
-  public installmentValue: number = 0;
-  public adjustedInstallments: number[] = [];
-  
+  private inflationValue: number = 0;
+  private totalAdjustedInstallments: number = 0;
+  private cashPrice: number = 0;
+  private financedPrice: number = 0;
+  private installments: number = 0;
+  private installmentValue: number = 0;
+  private adjustedInstallments: number[] = [];
+
   constructor(
     private fb: FormBuilder,
-    private costCalculatorService: CostCalculatorServiceService
+    private router: Router,
+    private costCalculatorService: CostCalculatorServiceService,
   ) {
-  
+
   }
 
 
@@ -78,11 +79,10 @@ export class CostCalculatorPageComponent {
   }
 
   calculateAdjustedInstallments(
-  ): number {
+  ): void {
 
     if (this.costCalculatorForm.invalid) {
       this.costCalculatorForm.markAllAsTouched();
-      return 0;
     }
 
     this.cashPrice = this.costCalculatorForm.controls['cashPrice'].value;
@@ -103,8 +103,15 @@ export class CostCalculatorPageComponent {
     console.log('totalPriceFinanced' + this.totalAdjustedInstallments);
     console.log('adjustedInstallments' + this.adjustedInstallments);
 
-    this.costCalculatorForm.reset( {cashPrice: '', totalPriceFinanced: '', installments: '', inflationValue: this.getInflationValue()})
-    return this.totalAdjustedInstallments;
+    this.costCalculatorForm.reset({ cashPrice: '', totalPriceFinanced: '', installments: '', inflationValue: this.getInflationValue() })
+    this.costCalculatorService.setResultCalculator(this.inflationValue,
+      this.totalAdjustedInstallments,
+      this.cashPrice,
+      this.financedPrice,
+      this.installmentValue,
+      this.adjustedInstallments);
+    
+    this.router.navigate(['calculator/resultados']);
   }
 
 }

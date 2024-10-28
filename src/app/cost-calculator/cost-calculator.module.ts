@@ -4,12 +4,12 @@ import { CostCalculatorPageComponent } from './pages/cost-calculator-page/cost-c
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { CostCalculatorRoutingModule } from './cost-calculator-routing.module';
-
-
+import { ResultsCalculatorComponent } from './pages/results-calculator-page/results-calculator.component';
 
 @NgModule({
   declarations: [
-    CostCalculatorPageComponent
+    CostCalculatorPageComponent,
+    ResultsCalculatorComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="result-container">
+      <h2>Tu mejor opción es comprar de Contado 💰</h2>
+
+      <div class="summary-container">
+        <div class="summary-box">
+          <h3>Sumatoria de las cuotas ajustadas a valor de hoy</h3>
+          <p class="price-adjusted">{{ totalAdjustedInstallments | currency:'USD' }}</p>
+          <p>Precio contado</p>
+          <span class="price-cash">{{ cashPrice | currency:'USD' }}</span>
+          <p>Precio Cuotas</p>
+          <span class="price-financed">{{ financedPrice | currency:'USD' }}</span>
+        </div>
+
+        <div class="summary-box">
+          <h3>Monto de cada cuota</h3>
+          <p class="installment-amount">{{ installmentValue | currency:'USD' }}</p>
+        </div>
+
+        <div class="summary-box">
+          <h3>Inflación mensual estimada</h3>
+          <p class="inflation-rate">{{ inflationValue }}% (~{{ inflationValue * 12 }}% anual)</p>
+        </div>
+      </div>
+
+      <div class="installment-list">
+        <h3>Cuotas ajustadas por la inflación acumulada mes a mes</h3>
+        <div *ngFor="let installment of adjustedInstallments; let i = index" class="installment-item">
+          <span>Cuota #{{ i + 1 }}</span>
+          <span>{{ installment | currency:'USD' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
