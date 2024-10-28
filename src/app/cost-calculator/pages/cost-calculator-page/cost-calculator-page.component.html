@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <form [formGroup]= "costCalculatorForm" (ngSubmit)="calculateAdjustedInstallments()" autocomplete="off">
+           
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Ingresá el precio de contado</label>
+                <div class="col-sm-9">
+
+                    <input type="number"
+                           class="form-control"
+                           formControlName="cashPrice"
+                           placeholder="Total de Contado">
+
+                    <span *ngIf="isValidField('cashPrice')"
+                          class="form-text text-danger">
+                        {{ getFieldError('cashPrice') }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Ingresá el precio total en cuotas</label>
+                <div class="col-sm-9">
+
+                    <input type="number"
+                           class="form-control"
+                           formControlName="totalPriceFinanced"
+                           placeholder="Total en cuotas">
+
+                    <span *ngIf="isValidField('totalPriceFinanced')"
+                          class="form-text text-danger">
+                        {{ getFieldError('totalPriceFinanced') }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Inflación mensual estimada</label>
+                <div class="col-sm-9">
+
+                    <input type="number"
+                           class="form-control"
+                           formControlName="inflationValue"
+                           placeholder="Infación mensual estimada">
+
+                    <span *ngIf="isValidField('inflationValue')"
+                          class="form-text text-danger">
+                        {{ getFieldError('inflationValue') }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Cantidad de cuotas</label>
+                <div class="col-sm-9">
+
+                    <input type="number"
+                           class="form-control"
+                           formControlName="installments"
+                           placeholder="Cantidad de cuotas">
+
+                    <span *ngIf="isValidField('installments')"
+                          class="form-text text-danger">
+                        {{ getFieldError('installments') }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <button type="submit"
+                            class="btn btn-primary float-end">
+                        Calcular
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

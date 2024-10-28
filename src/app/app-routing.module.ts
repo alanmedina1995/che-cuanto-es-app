@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
   },
   {
+    path:'calculator',
+    loadChildren: () => import('./cost-calculator/cost-calculator.module').then(m => m.CostCalculatorModule)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
