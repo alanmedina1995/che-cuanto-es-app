@@ -7,33 +7,36 @@
             <div class="row justify-content-center">
                 <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="off">
 
-                    <div class="mb-3 row">
+                    <div class="input-group mb-3">
                         <label class="col-sm-3 col-form-label">Ingresá tu username</label>
-                        <div class="col-sm-9">
 
-                            <input type="text" class="form-control" formControlName="username" placeholder="username">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-fonts"></i></span>
 
-                            <span *ngIf="isValidField('username')" class="form-text text-danger">
-                                {{ getFieldError('username') }}
-                            </span>
-                        </div>
+                        <input type="text" class="form-control" formControlName="username" placeholder="username">
+
+                        <span *ngIf="isValidField('username')" class="form-text text-danger">
+                            {{ getFieldError('username') }}
+                        </span>
+
                     </div>
 
-                    <div class="mb-3 row">
+                    <div class="input-group mb-3">
                         <label class="col-sm-3 col-form-label">Ingresá tu contraseña</label>
-                        <div class="col-sm-9">
 
-                            <input type="password" class="form-control" formControlName="password" placeholder="password">
+                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
 
-                            <span *ngIf="isValidField('password')" class="form-text text-danger">
-                                {{ getFieldError('password') }}
-                            </span>
-                        </div>
+                        <input type="password" class="form-control" formControlName="password" placeholder="password">
+
+                        <span *ngIf="isValidField('password')" class="form-text text-danger">
+                            {{ getFieldError('password') }}
+                        </span>
+
                     </div>
 
                     <div class="row">
                         <div class="col">
                             <button type="submit" class="btn btn-primary float-end">
+                                <i class="bi bi-door-open"></i>
                                 Log In
                             </button>
                         </div>

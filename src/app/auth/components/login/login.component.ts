@@ -23,6 +23,11 @@ export class LoginComponent {
 
   onLogin(){
 
+    if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
     const user = this.loginForm.getRawValue() as User;
 
     this.authService.login(user).subscribe({
