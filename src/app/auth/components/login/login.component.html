@@ -1,1 +1,50 @@
-<p>login works!</p>
+<div class="card text-center">
+    <div class="card-header">
+        Inicio de sesión
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row justify-content-center">
+                <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="off">
+
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Ingresá tu username</label>
+                        <div class="col-sm-9">
+
+                            <input type="text" class="form-control" formControlName="username" placeholder="username">
+
+                            <span *ngIf="isValidField('username')" class="form-text text-danger">
+                                {{ getFieldError('username') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label class="col-sm-3 col-form-label">Ingresá tu contraseña</label>
+                        <div class="col-sm-9">
+
+                            <input type="password" class="form-control" formControlName="password" placeholder="password">
+
+                            <span *ngIf="isValidField('password')" class="form-text text-danger">
+                                {{ getFieldError('password') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary float-end">
+                                Log In
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="card-text">¿Aún no tiene usuario? Registrate </p>
+        <a (click)="navigateToSignUp()" class="card-link">Sign Up</a>
+    </div>
+</div>

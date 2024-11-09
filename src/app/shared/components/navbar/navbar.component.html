@@ -3,18 +3,31 @@
       <a class="navbar-brand" (click)="navigateToHome()">¿Che cuanto es?</a>
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" (click)="navigateToCostCalculator()">Calcuflación</a>
+          <a class="nav-link active" aria-current="page" routerLink="calculator">Calcuflación</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cotizaciones</a>
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">Cotizaciones</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" (click)="navigateToMarketRates()">Oficiales</a></li>
-            <li><a class="dropdown-item" (click)="navigateToDolarArgy()">Dolar en Argy</a></li>
+            <li><a class="dropdown-item" routerLink="market-rates/oficiales">Oficiales</a></li>
+            <li><a class="dropdown-item" routerLink="market-rates/dolar-argy">Dolar en Argy</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" (click)="openToModalSignUp()">Sign Up</a>
+        @if(!activeUser) {
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="auth/login">Log In</a>
+          </li>
+        } @else {
+          <a class="navbar-brand">
+            Hola {{user}}
+          </a>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" (click)="onLogout()">Log Out</a>
         </li>
+        }
+        <ng-template *ngIf="!activeUser;else logout">
+        </ng-template>
+        <ng-template #logout>
+        </ng-template>
       </ul>
     </div>
 </nav>

@@ -12,7 +12,7 @@ import { User } from '../../interfaces/user';
 export class SignUpComponent {
 
   public signUpForm: FormGroup = new FormGroup({
-    userName: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
@@ -61,6 +61,10 @@ export class SignUpComponent {
     }
 
     return null;
+  }
+
+  navigateToLogIn(){
+    this.router.navigate(['./auth/login']);
   }
 
 }
