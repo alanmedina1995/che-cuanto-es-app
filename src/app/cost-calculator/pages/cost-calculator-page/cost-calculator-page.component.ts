@@ -83,6 +83,7 @@ export class CostCalculatorPageComponent {
 
     if (this.costCalculatorForm.invalid) {
       this.costCalculatorForm.markAllAsTouched();
+      return;
     }
 
     this.cashPrice = this.costCalculatorForm.controls['cashPrice'].value;

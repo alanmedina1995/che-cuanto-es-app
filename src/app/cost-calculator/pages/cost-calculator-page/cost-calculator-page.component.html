@@ -1,75 +1,58 @@
 <div class="container">
     <div class="row justify-content-center">
-        <form [formGroup]= "costCalculatorForm" (ngSubmit)="calculateAdjustedInstallments()" autocomplete="off">
-           
-            <div class="mb-3 row">
+        <form [formGroup]="costCalculatorForm" (ngSubmit)="calculateAdjustedInstallments()" autocomplete="off">
+
+            <div class="input-group mb-3">
                 <label class="col-sm-3 col-form-label">Ingresá el precio de contado</label>
-                <div class="col-sm-9">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-cash-coin"></i></span>
 
-                    <input type="number"
-                           class="form-control"
-                           formControlName="cashPrice"
-                           placeholder="Total de Contado">
+                <input type="number" class="form-control" formControlName="cashPrice" placeholder="Total de Contado">
 
-                    <span *ngIf="isValidField('cashPrice')"
-                          class="form-text text-danger">
-                        {{ getFieldError('cashPrice') }}
-                    </span>
-                </div>
+                <span *ngIf="isValidField('cashPrice')" class="form-text text-danger">
+                    {{ getFieldError('cashPrice') }}
+                </span>
             </div>
 
-            <div class="mb-3 row">
+            <div class="input-group mb-3">
                 <label class="col-sm-3 col-form-label">Ingresá el precio total en cuotas</label>
-                <div class="col-sm-9">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-credit-card"></i></span>
 
-                    <input type="number"
-                           class="form-control"
-                           formControlName="totalPriceFinanced"
-                           placeholder="Total en cuotas">
+                <input type="number" class="form-control" formControlName="totalPriceFinanced"
+                    placeholder="Total en cuotas">
 
-                    <span *ngIf="isValidField('totalPriceFinanced')"
-                          class="form-text text-danger">
-                        {{ getFieldError('totalPriceFinanced') }}
-                    </span>
-                </div>
+                <span *ngIf="isValidField('totalPriceFinanced')" class="form-text text-danger">
+                    {{ getFieldError('totalPriceFinanced') }}
+                </span>
             </div>
 
-            <div class="mb-3 row">
+            <div class="input-group mb-3">
                 <label class="col-sm-3 col-form-label">Inflación mensual estimada</label>
-                <div class="col-sm-9">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-graph-up-arrow"></i></span>
+                <input type="number" class="form-control" formControlName="inflationValue"
+                    placeholder="Infación mensual estimada">
 
-                    <input type="number"
-                           class="form-control"
-                           formControlName="inflationValue"
-                           placeholder="Infación mensual estimada">
-
-                    <span *ngIf="isValidField('inflationValue')"
-                          class="form-text text-danger">
-                        {{ getFieldError('inflationValue') }}
-                    </span>
-                </div>
+                <span *ngIf="isValidField('inflationValue')" class="form-text text-danger">
+                    {{ getFieldError('inflationValue') }}
+                </span>
+                
             </div>
 
-            <div class="mb-3 row">
+            <div class="input-group mb-3">
                 <label class="col-sm-3 col-form-label">Cantidad de cuotas</label>
-                <div class="col-sm-9">
+                <span class="input-group-text" id="basic-addon1"><i class="bi bi-bank"></i></span>
 
-                    <input type="number"
-                           class="form-control"
-                           formControlName="installments"
-                           placeholder="Cantidad de cuotas">
+                <input type="number" class="form-control" formControlName="installments"
+                    placeholder="Cantidad de cuotas">
 
-                    <span *ngIf="isValidField('installments')"
-                          class="form-text text-danger">
-                        {{ getFieldError('installments') }}
-                    </span>
-                </div>
+                <span *ngIf="isValidField('installments')" class="form-text text-danger">
+                    {{ getFieldError('installments') }}
+                </span>
+
             </div>
-            
+
             <div class="row">
                 <div class="col">
-                    <button type="submit"
-                            class="btn btn-primary float-end">
+                    <button type="submit" class="btn btn-primary float-end">
                         Calcular
                     </button>
                 </div>
