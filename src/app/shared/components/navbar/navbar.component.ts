@@ -30,4 +30,8 @@ export class NavbarComponent {
     this.router.navigate(['./market-rates/dolar-argy']);
   }
 
+  openToModalSignUp(){
+    this.router.navigate(['./auth/signUp']);
+  }
+
 }

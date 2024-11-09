@@ -5,6 +5,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { PoliticyPageComponent } from './pages/politicy-page/politicy-page.component';
 import { TermPageComponent } from './pages/term-page/term-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SignUpComponent } from '../auth/components/sign-up/sign-up.component';
+import { AuthModule } from '../auth/auth.module';
 
 
 @NgModule({
@@ -16,7 +18,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     FooterComponent,

@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()" autocomplete="off">
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Ingresá tu nuevo username</label>
+        <div class="col-sm-9">
+
+          <input type="text" class="form-control" formControlName="userName" placeholder="username">
+
+          <span *ngIf="isValidField('userName')" class="form-text text-danger">
+            {{ getFieldError('userName') }}
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Ingresá tu email</label>
+        <div class="col-sm-9">
+
+          <input type="text" class="form-control" formControlName="email" placeholder="email@mail.com">
+
+          <span *ngIf="isValidField('email')" class="form-text text-danger">
+            {{ getFieldError('email') }}
+          </span>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Ingresá tu nueva contraseña</label>
+        <div class="col-sm-9">
+
+          <input type="text" class="form-control" formControlName="password" placeholder="password">
+
+          <span *ngIf="isValidField('password')" class="form-text text-danger">
+            {{ getFieldError('password') }}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary float-end">
+            Sign Up
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
