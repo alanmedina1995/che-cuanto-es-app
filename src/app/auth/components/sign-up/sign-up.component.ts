@@ -25,6 +25,7 @@ export class SignUpComponent {
   onSignUp() {
     if(this.signUpForm.invalid){
       this.signUpForm.markAllAsTouched();
+      return;
     }
 
     const user = this.signUpForm.getRawValue() as User;
