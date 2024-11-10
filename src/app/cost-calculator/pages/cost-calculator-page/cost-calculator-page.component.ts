@@ -3,6 +3,7 @@ import { CostCalculatorServiceService } from '../../services/cost-calculator-ser
 import { InflationValue } from './../../interfaces/inflation-value';
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { ResultCalcuflation, ResultCalcuflationClass } from '../../interfaces/result-calcuflation';
 
 @Component({
   selector: 'app-cost-calculator-page',
@@ -10,30 +11,14 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 })
 export class CostCalculatorPageComponent {
 
-  // public costCalculatorForm: FormGroup =  this.fb.group({
-  //   cashPrice: [0, [Validators.required, Validators.min(0)]],
-  //   totalPriceFinanced: [0, [Validators.required, Validators.min(0)]],
-  //   inflationValue: [0, [Validators.required, Validators.min(0)]],
-  //   installments: [0, [Validators.required, Validators.min(2)]]
-  // });
-
   public costCalculatorForm: FormGroup = new FormGroup({
     cashPrice: new FormControl('', [Validators.required, Validators.min(0)]),
     totalPriceFinanced: new FormControl('', [Validators.required, Validators.min(0)]),
     inflationValue: new FormControl('', [Validators.required, Validators.min(0)]),
     installments: new FormControl('', [Validators.required, Validators.min(0)])
   })
-
-  private inflationValue: number = 0;
-  private totalAdjustedInstallments: number = 0;
-  private cashPrice: number = 0;
-  private financedPrice: number = 0;
-  private installments: number = 0;
-  private installmentValue: number = 0;
-  private adjustedInstallments: number[] = [];
-
+ 
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     private costCalculatorService: CostCalculatorServiceService,
   ) {
@@ -72,8 +57,8 @@ export class CostCalculatorPageComponent {
     this.costCalculatorService.getInflationValue()
       .subscribe((inflacionValue: InflationValue[]) => {
         if (inflacionValue.length > 0) {
-          this.inflationValue = inflacionValue[inflacionValue.length - 1].valor;
-          this.costCalculatorForm.controls['inflationValue'].setValue(this.inflationValue);
+          const inflationValue = inflacionValue[inflacionValue.length - 1].valor;
+          this.costCalculatorForm.controls['inflationValue'].setValue(inflationValue);
         }
       });
   }
@@ -86,31 +71,33 @@ export class CostCalculatorPageComponent {
       return;
     }
 
-    this.cashPrice = this.costCalculatorForm.controls['cashPrice'].value;
-    this.financedPrice = this.costCalculatorForm.controls['totalPriceFinanced'].value;
-    this.installments = this.costCalculatorForm.controls['installments'].value
-    this.inflationValue = this.costCalculatorForm.controls['inflationValue'].value / 100;
+    const adjustedInstallments: number[] = [];
+    let totalAdjustedInstallments: number = 0;
 
-    this.installmentValue = this.financedPrice / this.installments;
+    const cashPrice = this.costCalculatorForm.controls['cashPrice'].value;
+    const financedPrice = this.costCalculatorForm.controls['totalPriceFinanced'].value;
+    const installments = this.costCalculatorForm.controls['installments'].value
+    const inflationValue = this.costCalculatorForm.controls['inflationValue'].value / 100;
 
-    for (let i = 1; i <= this.installments; i++) {
+    const installmentValue = financedPrice / installments;
 
-      const adjustedInstallment = this.installmentValue / Math.pow(1 + this.inflationValue, i);
-      this.adjustedInstallments.push(adjustedInstallment);
+    for (let i = 1; i <= installments; i++) {
 
-      this.totalAdjustedInstallments += adjustedInstallment;
+      const adjustedInstallment = installmentValue / Math.pow(1 + inflationValue, i);
+      adjustedInstallments.push(adjustedInstallment);
+
+      totalAdjustedInstallments += adjustedInstallment;
     }
 
-    console.log('totalPriceFinanced' + this.totalAdjustedInstallments);
-    console.log('adjustedInstallments' + this.adjustedInstallments);
+    console.log('totalPriceFinanced' + totalAdjustedInstallments);
+    console.log('adjustedInstallments' + adjustedInstallments);
 
     this.costCalculatorForm.reset({ cashPrice: '', totalPriceFinanced: '', installments: '', inflationValue: this.getInflationValue() })
-    this.costCalculatorService.setResultCalculator(this.inflationValue,
-      this.totalAdjustedInstallments,
-      this.cashPrice,
-      this.financedPrice,
-      this.installmentValue,
-      this.adjustedInstallments);
+    
+    let resultCalcuflation = new ResultCalcuflationClass(inflationValue, totalAdjustedInstallments, cashPrice,
+      financedPrice,installments,installmentValue,adjustedInstallments)
+  
+    this.costCalculatorService.setResultCalculator(resultCalcuflation);
     
     this.router.navigate(['./calculator/resultados']).then(() => {
       this.ngOnDestroy();

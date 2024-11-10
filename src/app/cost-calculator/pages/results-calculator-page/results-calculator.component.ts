@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CostCalculatorServiceService } from '../../services/cost-calculator-service.service';
+import { ResultCalcuflation } from '../../interfaces/result-calcuflation';
+import { FCI } from '../../interfaces/fci';
 
 @Component({
   selector: 'app-results-calculator',
@@ -7,12 +9,8 @@ import { CostCalculatorServiceService } from '../../services/cost-calculator-ser
 })
 export class ResultsCalculatorComponent {
 
-  public inflationValue: number = 0;
-  public totalAdjustedInstallments: number = 0;
-  public cashPrice: number = 0;
-  public financedPrice: number = 0;
-  public installmentValue: number = 0;
-  public adjustedInstallments: number[] = []
+  public resultCalcuflation : ResultCalcuflation = {} as ResultCalcuflation;
+  private fci: FCI[] = [];
 
   constructor(
     private costCalculatorService: CostCalculatorServiceService
@@ -22,15 +20,19 @@ export class ResultsCalculatorComponent {
 
   ngOnInit(): void{
     this.getResultValues();
+    this.getFciValus();
   }
 
   getResultValues():void{
-    this.inflationValue = this.costCalculatorService.inflationValue * 100;
-    this.totalAdjustedInstallments = this.costCalculatorService.totalAdjustedInstallments;
-    this.cashPrice = this.costCalculatorService.cashPrice;
-    this.financedPrice = this.costCalculatorService.financedPrice;
-    this.installmentValue = this.costCalculatorService.installmentValue;
-    this.adjustedInstallments = this.costCalculatorService.adjustedInstallments;
+      this.resultCalcuflation = this.costCalculatorService.resultCalcuflation;
+  }
+
+  getFciValus(): void {
+    this.costCalculatorService.getFciValues()
+    .subscribe((fciValues: FCI[]) => {
+      this.fci = fciValues;
+      console.log(this.fci);
+    });
   }
 
 
