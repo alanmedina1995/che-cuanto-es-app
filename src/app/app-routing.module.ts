@@ -11,6 +11,11 @@ const routes: Routes = [
     loadChildren: () => import('./cost-calculator/cost-calculator.module').then(m => m.CostCalculatorModule)
   },
   {
+    path:'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+
+  },
+  {
     path: '**',
     redirectTo: 'market-rates'
   }
