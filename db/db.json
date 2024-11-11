@@ -11,6 +11,13 @@
       "email": "nicole.cardone@icbc.com.a",
       "password": "nicole12",
       "id": 2
+    },
+    {
+      "username": "shadows",
+      "email": "shadows@gmail.com",
+      "password": "shadows123",
+      "confirmPassword": "shadows123",
+      "id": 3
     }
   ],
   "inflation": [

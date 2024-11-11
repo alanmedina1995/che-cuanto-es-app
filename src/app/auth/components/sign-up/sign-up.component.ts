@@ -1,6 +1,6 @@
 import { AuthService } from './../../services/auth.service';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../interfaces/user';
 
@@ -11,20 +11,28 @@ import { User } from '../../interfaces/user';
 })
 export class SignUpComponent {
 
-  public signUpForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8)])
-  });
+  public signUpForm: FormGroup;
+  passwordControl: AbstractControl;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) { }
+  ) { 
+    this.signUpForm = new FormGroup({
+      username: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8),
+        this.passwordMatchValidator.bind(this)])
+    });
+
+    this.passwordControl = this.signUpForm.get('password') || new FormControl('');
+  }
 
   onSignUp() {
     if(this.signUpForm.invalid){
       this.signUpForm.markAllAsTouched();
+      alert('Revisá los valores ingresados');
       return;
     }
 
@@ -38,6 +46,16 @@ export class SignUpComponent {
     })
   }
   
+  passwordMatchValidator(control: AbstractControl) {
+    const password = this.passwordControl?.value;
+    const confirmPassword = control.value;
+
+    if (password === confirmPassword) {
+      return null;
+    } else {
+      return { passwordsNotMatch: true };
+    }
+  }
 
   isValidField(field: string): boolean | null {
     return this.signUpForm.controls[field].errors
