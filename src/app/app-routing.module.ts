@@ -18,6 +18,10 @@ const routes: Routes = [
 
   },
   {
+    path:'legals',
+    loadChildren: () => import('./shared/shared.module').then(m => m.SharedModule)
+  },
+  {
     path: '**',
     redirectTo: 'market-rates'
   }

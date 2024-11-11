@@ -9,7 +9,7 @@ const routes: Routes = [
         children: [
           { path: 'politicas-de-privacidad', component:  PoliticyPageComponent},
           { path: 'terminos-y-condiciones', component:  TermPageComponent},
-          { path: '**', redirectTo: 'terminos-y-condiciones' },
+          { path: '**', redirectTo: '/' },
         ]
       }
 ];
