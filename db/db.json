@@ -5,6 +5,12 @@
       "email": "alanmedina1995@gmail.com",
       "password": "alanmedina95",
       "id": 1
+    },
+    {
+      "username": "nicole",
+      "email": "nicole.cardone@icbc.com.a",
+      "password": "nicole12",
+      "id": 2
     }
   ],
   "inflation": [
