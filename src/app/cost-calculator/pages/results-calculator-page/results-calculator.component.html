@@ -3,9 +3,11 @@
     <div class="col-12 col-md-10 col-lg-8">
       <div class="card text-center mb-4">
         <div class="card-body">
-          <h2 *ngIf="resultCalcuflation.totalAdjustedInstallments > resultCalcuflation.cashPrice" class="card-title">Tu mejor opción es comprar de Contado
+          <h2 *ngIf="resultCalcuflation.totalAdjustedInstallments > resultCalcuflation.cashPrice" class="card-title">Tu
+            mejor opción es comprar de Contado
           </h2>
-          <h2 *ngIf="resultCalcuflation.totalAdjustedInstallments <= resultCalcuflation.cashPrice" class="card-title">Tu mejor opción es comprar en Cuotas
+          <h2 *ngIf="resultCalcuflation.totalAdjustedInstallments <= resultCalcuflation.cashPrice" class="card-title">Tu
+            mejor opción es comprar en Cuotas
           </h2>
         </div>
       </div>
@@ -18,6 +20,7 @@
               <p class="price-adjusted display-6">{{ resultCalcuflation.totalAdjustedInstallments | currency }}</p>
               <p>Precio contado</p>
               <span class="price-cash fw-bold">{{ resultCalcuflation.cashPrice | currency }}</span>
+              <br>
               <p>Precio Cuotas</p>
               <span class="price-financed fw-bold">{{ resultCalcuflation.financedPrice | currency }}</span>
             </div>
@@ -37,7 +40,32 @@
           <div class="card">
             <div class="card-body">
               <h3 class="card-title">Inflación mensual estimada</h3>
-              <p class="inflation-rate display-6">{{ resultCalcuflation.inflationValue | number }}% (~{{ resultCalcuflation.inflationValue * 12  | number }}% anual)</p>
+              <p class="inflation-rate display-6">{{ resultCalcuflation.inflationValue | number }}% (~{{
+                resultCalcuflation.inflationValue * 12 | number }}% anual)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4 text-center">
+        <div class="card-body">
+          <h3 class="card-title">Si tengo los crocantes y decido invertirlo...</h3>
+          <div class="row justify-content-center">
+            <div class="col-md-4 mb-4" *ngFor="let fci of fcis">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h3 class="card-title">Cuenta remunerada: {{ fci.fondo }}: </h3>
+                  <br>
+                  <h5 class="card-subtitle">{{fci.tna*100 | number}}% TNA - {{fci.tea *100 | number}}% TEA </h5>
+                  <br>
+                  <br>
+                  <p>Sin sacar los crocantes en {{resultCalcuflation.installments | number}} meses:</p>
+                  <span class="price-cash fw-bold">{{ fci.resultCalculateFcis.at(0)?.result | currency }}</span>
+                  <br>
+                  <p>Retirando la cuota mes a mes para pagar :</p>
+                  <span class="price-financed fw-bold">{{ fci.resultCalculateFcis.at(1)?.result | currency }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -55,4 +83,3 @@
       </div>
     </div>
   </div>
-</div>
