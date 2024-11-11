@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-12 col-md-10 col-lg-8">
       <div class="card text-center mb-4">
@@ -18,12 +18,12 @@
             <div class="card-body">
               <h3 class="card-title">Sumatoria de las cuotas ajustadas a valor de hoy</h3>
               <p class="price-adjusted display-6">{{ resultCalcuflation.totalAdjustedInstallments | currency }}</p>
-              <p>Precio contado</p>
-              <span class="price-cash fw-bold">{{ resultCalcuflation.cashPrice | currency }}</span>
-              <br>
-              <p>Precio Cuotas</p>
-              <span class="price-financed fw-bold">{{ resultCalcuflation.financedPrice | currency }}</span>
-            </div>
+                <p>Precio contado</p>
+                <span class="price-cash fw-bold">{{ resultCalcuflation.cashPrice | currency }}</span>
+                <br><br>
+                <p>Precio Cuotas</p>
+                <span class="price-financed fw-bold">{{ resultCalcuflation.financedPrice | currency }}</span>
+              </div>
           </div>
         </div>
 
@@ -54,14 +54,14 @@
             <div class="col-md-4 mb-4" *ngFor="let fci of fcis">
               <div class="card text-center">
                 <div class="card-body">
-                  <h3 class="card-title">Cuenta remunerada: {{ fci.fondo }}: </h3>
+                  <h3 class="card-title">Cuenta remunerada {{ fci.fondo }}: </h3>
                   <br>
                   <h5 class="card-subtitle">{{fci.tna*100 | number}}% TNA - {{fci.tea *100 | number}}% TEA </h5>
                   <br>
                   <br>
                   <p>Sin sacar los crocantes en {{resultCalcuflation.installments | number}} meses:</p>
                   <span class="price-cash fw-bold">{{ fci.resultCalculateFcis.at(0)?.result | currency }}</span>
-                  <br>
+                  <br><br>
                   <p>Retirando la cuota mes a mes para pagar :</p>
                   <span class="price-financed fw-bold">{{ fci.resultCalculateFcis.at(1)?.result | currency }}</span>
                 </div>
