@@ -6,5 +6,12 @@
       "password": "alanmedina95",
       "id": 1
     }
+  ],
+  "inflation": [
+    {
+      "fecha": "2024-09-30",
+      "valor": 3.5,
+      "id": 1
+    }
   ]
 }
