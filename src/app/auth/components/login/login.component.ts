@@ -23,12 +23,21 @@ export class LoginComponent {
 
   onLogin(){
 
+    if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
     const user = this.loginForm.getRawValue() as User;
 
     this.authService.login(user).subscribe({
       next: (loggedIn) => {
         if(loggedIn) {
           this.router.navigate(['/']);
+        }
+        else{
+          this.loginForm.reset();
+          alert('El nombre de usuario y/o contraseña son incorrectos.');
         }
       }
     })
