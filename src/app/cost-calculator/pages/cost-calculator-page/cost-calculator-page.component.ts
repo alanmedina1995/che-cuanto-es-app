@@ -17,7 +17,7 @@ export class CostCalculatorPageComponent {
     inflationValue: new FormControl('', [Validators.required, Validators.min(0)]),
     installments: new FormControl('', [Validators.required, Validators.min(0)])
   })
- 
+
   constructor(
     private router: Router,
     private costCalculatorService: CostCalculatorServiceService,
@@ -55,12 +55,30 @@ export class CostCalculatorPageComponent {
 
   getInflationValue(): void {
     this.costCalculatorService.getInflationValue()
-      .subscribe((inflacionValue: InflationValue[]) => {
-        if (inflacionValue.length > 0) {
-          const inflationValue = inflacionValue[inflacionValue.length - 1].valor;
-          this.costCalculatorForm.controls['inflationValue'].setValue(inflationValue);
+      .subscribe(
+        (inflacionValue: InflationValue[]) => {
+          if (inflacionValue.length > 0) {
+            const inflationValue = inflacionValue[inflacionValue.length - 1];
+            this.costCalculatorService.saveDbInflationValue(inflationValue).subscribe(() => {
+              this.costCalculatorForm.controls['inflationValue'].setValue(inflationValue.valor);
+            });
+          } else {
+            this.handleDbInflationValue();
+          }
+        },
+        () => {
+          this.handleDbInflationValue();
         }
-      });
+      );
+  }
+
+  private handleDbInflationValue(): void {
+    this.costCalculatorService.getDbInflationValue().subscribe((inflacionValueDb: InflationValue[]) => {
+      if (inflacionValueDb.length > 0) {
+        const inflationValueDb = inflacionValueDb[inflacionValueDb.length - 1];
+        this.costCalculatorForm.controls['inflationValue'].setValue(inflationValueDb.valor);
+      }
+    });
   }
 
   calculateAdjustedInstallments(
@@ -93,18 +111,18 @@ export class CostCalculatorPageComponent {
     console.log('adjustedInstallments' + adjustedInstallments);
 
     this.costCalculatorForm.reset({ cashPrice: '', totalPriceFinanced: '', installments: '', inflationValue: this.getInflationValue() })
-    
+
     let resultCalcuflation = new ResultCalcuflationClass(inflationValue, totalAdjustedInstallments, cashPrice,
-      financedPrice,installments,installmentValue,adjustedInstallments)
-  
+      financedPrice, installments, installmentValue, adjustedInstallments)
+
     this.costCalculatorService.setResultCalculator(resultCalcuflation);
-    
+
     this.router.navigate(['./calculator/resultados']).then(() => {
       this.ngOnDestroy();
     });
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
   }
 
 }

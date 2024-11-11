@@ -7,6 +7,7 @@ import { TermPageComponent } from './pages/term-page/term-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignUpComponent } from '../auth/components/sign-up/sign-up.component';
 import { AuthModule } from '../auth/auth.module';
+import { SharedRoutingModule } from './shared-routing.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AuthModule } from '../auth/auth.module';
   imports: [
     CommonModule,
     RouterModule,
+    SharedRoutingModule
   ],
   exports: [
     FooterComponent,

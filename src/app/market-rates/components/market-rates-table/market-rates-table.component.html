@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div *ngIf="marketRates.length === 0; else table" class="alert alert-warning text-center">
@@ -6,23 +6,26 @@
             </div>
 
             <ng-template #table>
+                <h2 class="text-center my-4">Cotizaciones</h2>
                 <table class="table table-bordered border-primary">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>moneda</th>
                             <th>nombre</th>
                             <th>compra</th>
                             <th>venta</th>
+                            <th>AVG</th>
+                            <th>Última actualización</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         <tr *ngFor="let marketRate of marketRates; let i = index">
-                            <td>{{ i + 1 }}</td>
                             <td>{{ marketRate.moneda }}</td>
                             <td>{{ marketRate.nombre }}</td>
                             <td>{{ marketRate.compra | currency }}</td>
                             <td>{{ marketRate.venta | currency }}</td>
+                            <td>{{ (marketRate.venta + marketRate.compra) / 2 | currency }}</td>
+                            <td>{{ marketRate.fechaActualizacion | date }}</td>
                         </tr>
                     </tbody>
                 </table>
