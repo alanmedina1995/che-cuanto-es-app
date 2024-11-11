@@ -35,6 +35,10 @@ export class LoginComponent {
         if(loggedIn) {
           this.router.navigate(['/']);
         }
+        else{
+          this.loginForm.reset();
+          alert('El nombre de usuario y/o contraseña son incorrectos.');
+        }
       }
     })
   }
