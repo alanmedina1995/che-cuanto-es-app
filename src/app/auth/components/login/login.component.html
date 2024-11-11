@@ -1,53 +1,55 @@
-<div class="card text-center">
-    <div class="card-header">
-        Inicio de sesión
-    </div>
-    <div class="card-body">
-        <div class="container">
-            <div class="row justify-content-center">
-                <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="off">
+<div class="d-flex justify-content-center mt-5">
+    <div class="card text-center" style="width: 30rem;">
+        <div class="card-header">
+            Inicio de sesión
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" autocomplete="off">
 
-                    <div class="input-group mb-3">
-                        <label class="col-sm-3 col-form-label">Ingresá tu username</label>
+                        <div class="input-group mb-3">
+                            <label class="col-sm-3 col-form-label">Ingresá tu username</label>
 
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-fonts"></i></span>
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-fonts"></i></span>
 
-                        <input type="text" class="form-control" formControlName="username" placeholder="username">
+                            <input type="text" class="form-control" formControlName="username" placeholder="username">
 
-                        <span *ngIf="isValidField('username')" class="form-text text-danger">
-                            {{ getFieldError('username') }}
-                        </span>
+                            <span *ngIf="isValidField('username')" class="form-text text-danger">
+                                {{ getFieldError('username') }}
+                            </span>
 
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <label class="col-sm-3 col-form-label">Ingresá tu contraseña</label>
-
-                        <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
-
-                        <input type="password" class="form-control" formControlName="password" placeholder="password">
-
-                        <span *ngIf="isValidField('password')" class="form-text text-danger">
-                            {{ getFieldError('password') }}
-                        </span>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary float-end">
-                                <i class="bi bi-door-open"></i>
-                                Log In
-                            </button>
                         </div>
-                    </div>
 
-                </form>
+                        <div class="input-group mb-3">
+                            <label class="col-sm-3 col-form-label">Ingresá tu contraseña</label>
+
+                            <span class="input-group-text" id="basic-addon1"><i class="bi bi-lock"></i></span>
+
+                            <input type="password" class="form-control" formControlName="password" placeholder="password">
+
+                            <span *ngIf="isValidField('password')" class="form-text text-danger">
+                                {{ getFieldError('password') }}
+                            </span>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary float-end">
+                                    <i class="bi bi-door-open"></i>
+                                    Log In
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-body">
-        <p class="card-text">¿Aún no tiene usuario? Registrate </p>
-        <a (click)="navigateToSignUp()" class="card-link">Sign Up</a>
+        <div class="card-body">
+            <p class="card-text">¿Aún no tiene usuario? Registrate </p>
+            <a (click)="navigateToSignUp()" class="card-link">Sign Up</a>
+        </div>
     </div>
 </div>
